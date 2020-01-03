@@ -1,0 +1,59 @@
+nif_Atleta,nome,email,data_nascimento,pais,genero,idEquipa,idCodigo_Postal,idEscalao
+0,"Sergio Vieira",serpor@outlook.com,1976-02-20,Portugal,Masculino,1,3,1
+1,"Pedro Isidro",50kmped@gmail.com,1985-07-17,Portugal,Masculino,3,3,1
+2,"Ricardo Ribas",ricpor@outlook.com,1997-10-08,Portugal,Masculino,4,2,1
+3,"Tsanko Arnaudov",tsa14@hotmail.com,1992-03-14,Portugal,Masculino,3,3,1
+4,"Nelson Évora",nelpor@outlook.com,1984-04-20,Portugal,Masculino,2,3,1
+6,"Justin Gatlin",jusesta@randomemailgenerator.com,1982-02-10,"Estados Unidos",Masculino,7,6,1
+7,"Andre De Grasse",andcan@outlook.com,1994-11-10,Canadá,Masculino,5,8,1
+8,"Christophe Lemaitre",chrfra@outlook.com,1990-06-11,França,Masculino,8,7,1
+9,"Wayde van Niekerk",wayaf@hotmail.com,1992-07-15,"Africa do Sul",Masculino,9,9,1
+10,"Kirani James",400mkir@gmail.com,1992-09-01,Granada,Masculino,10,10,1
+11,"LaShawn Merritt",lases@hotmail.com,1986-06-27,"Estados Unidos",Masculino,7,11,1
+12,"David Rudisha",davquê@outlook.com,1988-12-17,Quênia,Masculino,7,12,1
+13,"Taoufik Makhloufi",taoar@hotmail.com,1988-04-26,Argelia,Masculino,11,13,1
+14,"Clayton Murphy",claes@hotmail.com,1995-02-26,"Estados Unidos",Masculino,7,14,1
+15,"Matthew Centrowitz",matesta@randomemailgenerator.com,1989-09-18,"Estados Unidos",Masculino,12,15,1
+16,"Nick Willis",nicnov@outlook.com,1983-04-25,"Nova Zelândia",Masculino,13,16,1
+17,"Mo Farah","5000mo @gmail.com",1983-03-23,Inglaterra,Masculino,14,17,1
+18,"Paul Chelimo",5000pau@gmail.com,1990-10-27,Quênia,Masculino,15,18,1
+19,"Hagos Gebrhiwet",haget@hotmail.com,1994-04-11,Etiopia,Masculino,16,19,1
+20,"Paul Tanui",1000pau@gmail.com,1990-12-22,Quênia,Masculino,17,20,1
+21,"Asafa Powell",asajam@outlook.com,1982-11-23,Jamaica,Masculino,18,21,1
+22,"Yohan Blake",4x10yoh@gmail.com,1982-12-26,Jamaica,Masculino,6,22,1
+23,"Nickel Ashmeade",nicjam@outlook.com,1982-11-23,Jamaica,Masculino,10,23,1
+24,"Ryota Yamagata",ryoja@hotmail.com,1992-06-10,Japão,Masculino,19,24,1
+25,"Shota Iizuka",shoja@hotmail.com,1991-06-25,Japão,Masculino,20,25,1
+26,"Yoshihide Kiryu",yosjap@outlook.com,1995-12-15,Japão,Masculino,21,26,1
+27,"Asuka Cambridge",asuja@hotmail.com,1993-05-31,Japão,Masculino,22,27,1
+28,"Akeem Haynes",akecan@outlook.com,1992-03-11,Canadá,Masculino,7,28,1
+29,"Brendon Rodney",breca@hotmail.com,1992-04-09,Canadá,Masculino,23,8,1
+30,"Arman Hall",armes@hotmail.com,1994-02-12,"Estados Unidos",Masculino,7,29,1
+31,"Tony McQuay",tones@hotmail.com,1990-04-16,"Estados Unidos",Masculino,7,29,1
+32,"Gil Roberts",400mgil@gmail.com,1989-03-15,"Estados Unidos",Masculino,7,30,1
+33,"Nathon Allen",natja@hotmail.com,1995-11-28,Jamaica,Masculino,10,31,1
+34,"Fitzroy Dunkley",fitjam@outlook.com,1993-05-20,Jamaica,Masculino,10,31,1
+35,"Javon Francis",javja@hotmail.com,1994-12-14,Jamaica,Masculino,24,31,1
+36,"Alonzo Russell",alobah@outlook.com,1992-02-08,Bahamas,Masculino,25,32,1
+37,"Michael Mathieu",micba@hotmail.com,1984-06-24,Bahamas,Masculino,9,33,1
+38,"Steven Gardiner",steba@hotmail.com,1995-09-12,Bahamas,Masculino,10,34,1
+39,"Chris Brown",chrba@hotmail.com,1978-10-15,Bahamas,Masculino,10,35,1
+40,"Omar McLeod",omaja@hotmail.com,1994-04-25,Jamaica,Masculino,7,36,1
+41,"Orlando Ortega",orles@hotmail.com,1991-07-29,Espanha,Masculino,9,37,1
+42,"Dimitri Bascou",110mdim@gmail.com,1987-07-20,França,Masculino,22,38,1
+43,"Kerron Clement",kerest@outlook.com,1985-10-31,"Estados Unidos",Masculino,7,39,1
+44,"Boniface Tumuti",400mbon@gmail.com,1992-05-02,Quênia,Masculino,7,46,1
+45,"Yasmani Copello",yastu@hotmail.com,1987-04-15,Turquia,Masculino,27,47,1
+80,"João Miguel",joaozinho23@sapo.pt,2003-04-18,Portugal,Masculino,2,3,3
+81,"José Nuno",jnuno@gmail.com,2000-07-23,Portugal,Masculino,4,5,2
+82,"Maria Cristina",mcris@hotmail.com,2000-02-01,Portugal,Feminino,3,3,3
+83,"Carlos Silva",carlitos@outlook.com,2001-11-05,Portugal,Masculino,9,3,2
+84,"Tomás Azevedo",tomazito@sapo.pt,2005-08-06,Portugal,Masculino,28,5,3
+999,"Usain Bolt",usainbolt@bolt.com,1986-08-21,Jamaica,Masculino,6,1,1
+1000,"Cátia Azevedo",catpo@hotmail.com,1994-03-09,Portugal,Feminino,2,40,1
+1001,"Lorène Bazolo",100mlor@gmail.com,1983-05-04,Portugal,Feminino,2,41,1
+1002,"Ana Cabecinha",anapor@outlook.com,1984-04-29,Portugal,Feminino,26,42,1
+1003,"Dulce Félix",dulpo@hotmail.com,1982-10-23,Portugal,Feminino,3,43,1
+1004,"Susana Costa",suspor@outlook.com,1984-09-22,Portugal,Feminino,3,44,1
+1005,"Patrícia Mamona",patpor@outlook.com,1988-11-21,Portual,Feminino,2,45,1
+1006,"Marta Onofre",marpor@outlook.com,1999-01-28,Portugal,Feminino,2,3,1

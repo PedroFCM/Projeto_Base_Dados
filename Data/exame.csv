@@ -1,0 +1,5 @@
+idExame,nome,descricao,preco,idTeste_Clinico,nif_Medico
+1,rotina,Aprovado,30.00,1,1111111116
+2,avaliação,Aprovado,40.00,2,1111111115
+3,rotina,Aprovado,50.00,3,1111111115
+4,"avaliação cardiaca",Reprovado,20.00,5,1111111111

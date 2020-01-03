@@ -1,0 +1,6 @@
+idTeste_Clinico,altura,peso,pressao_arterial,freq_cardiaca,indice_massa_corporal,data
+1,196,86.00,110,80,25.00,"2019-11-30 15:00:00"
+2,175,58.00,113,85,23.00,"2019-12-01 11:30:00"
+3,175,58.00,120,76,23.40,"2019-09-01 16:00:00"
+4,NULL,NULL,NULL,NULL,NULL,NULL
+5,184,62.00,117,80,24.10,"2018-07-12 10:00:00"

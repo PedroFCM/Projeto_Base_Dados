@@ -1,0 +1,203 @@
+/* FAZER DELETE
+*/
+MATCH (n)
+DETACH DELETE n
+
+----------------------------------------------------------------------------------------
+
+-- POVOAMENTO DO NEO4J
+
+load csv with headers from "file:///atleta.csv" as row 
+create (:Atleta {nif_Atleta: toInteger(row.nif_Atleta), nome: row.nome, data_nascimento: row.data_nascimento, pais: row.pais, genero: row.genero, idEquipa: toInteger(row.idEquipa), idCodigo_Postal: toInteger(row.idCodigo_Postal), idEscalao: toInteger(row.idEscalao)});
+
+load csv with headers from "file:///categorias_modalidade.csv" as row
+create (:Categorias_Modalidade {descricao_Categorias : row.descricao_Categorias, nif_Atleta: toInteger(row.nif_Atleta), idModalidade: toInteger(row.idModalidade)});
+
+load csv with headers from "file:///codigo_postal.csv" as row
+create (:Codigo_Postal {idCodigo_Postal: toInteger(row.idCodigo_Postal), localidade: row.Localidade, codigo: row.codigo});
+
+load csv with headers from "file:///equipa.csv" as row
+create (:Equipa {idEquipa: toInteger(row.idEquipa), nome: row.nome});
+
+load csv with headers from "file:///escalao.csv" as row
+create (:Escalao {idEscalao: toInteger(row.idEscalao), descricao: row.descricao});
+
+load csv with headers from "file:///exame.csv" as row
+create (:Exame {idExame: toInteger(row.idExame), nome: row.nome, descricao: row.descricao, preco: toFloat(row.preco), idTeste_Clinico: toInteger(row.idTeste_Clinico), nif_Medico: toInteger(row.nif_Medico)});
+
+load csv with headers from "file:///marcacao.csv" as row
+create (:Marcacao {idMarcacao: toInteger(row.idMarcacao), data_Agendada: row.data_Agendada, nif_Atleta: toInteger(row.nif_Atleta), nif_Medico: toInteger(row.nif_Medico), idTeste_Clinico: toInteger(row.idTeste_Clinico)});
+
+load csv with headers from "file:///medico.csv" as row
+create (:Medico {nif_Medico: toInteger(row.nif_Medico), nome: row.nome, data_nascimento: row.data_nascimento, email: row.email, idCodigo_Postal: toInteger(row.idCodigo_Postal), idEspecialidade: toInteger(row.idEspecialidade)});
+
+load csv with headers from "file:///modalidade.csv" as row
+create (:Modalidade {idModalidade: toInteger(row.idModalidade), nome: row.nome});
+
+load csv with headers from "file:///teste_clinico.csv" as row
+create (:Teste_Clinico {idTeste_Clinico: toInteger(row.idTeste_Clinico), altura: toInteger(row.altura), peso: toFloat(row.peso), pressao_arterial: toInteger(row.pressao_arterial), freq_cardiaca: toInteger(row.freq_cardiaca),
+indice_massa_corporal: toFloat(row.indice_massa_corporal), data: row.data});
+
+load csv with headers from "file:///especialidade.csv" as row
+create (:Especialidade {idEspecialidade: toInteger(row.idEspecialidade), nome: row.nome});
+
+
+create constraint on (a:Atleta) assert a.nif_Atleta is unique;
+create constraint on (c:Categorias_Modalidade) assert c.descricao_Categorias is unique;
+create constraint on (c:Codigo_Postal) assert c.idCodigo_Postal is unique;
+create constraint on (e:Equipa) assert e.idEquipa is unique;
+create constraint on (e:Exame) assert e.idExame is unique;
+create constraint on (m:Marcacao) assert m.idMarcacao is unique;
+create constraint on (me:Medico) assert me.nif_Medico is unique;
+create constraint on (md:Modalidade) assert md.idModalidade is unique;
+create constraint on (t:Teste_Clinico) assert t.Teste_Clinico is unique;
+create constraint on (e:Especialidade) assert e.idEspecialidade is unique;
+
+match (a:Atleta)
+match (e:Equipa)
+where a.idEquipa = e.idEquipa
+merge (e)-[r:EquipaAtletas]-(a);
+
+match (a:Atleta)
+match (e:Escalao)
+where a.idEscalao = e.idEscalao
+merge (e)-[r:EscalaoAtletas]-(a);
+
+match (a:Atleta)
+match (m:Modalidade)
+match (c:Categorias_Modalidade)
+where c.idModalidade = m.idModalidade and a.nif_Atleta = c.nif_Atleta
+merge (a)-[r:Categorias]-(m)
+on create set r.descricao = c.descricao_Categorias;
+
+match (a:Atleta)
+match (c:Codigo_Postal)
+where a.idCodigo_Postal = c.idCodigo_Postal
+merge (c)-[r:MoraAtleta]-(a);
+
+match (m:Medico)
+match (c:Codigo_Postal)
+where m.idCodigo_Postal = c.idCodigo_Postal
+merge (c)-[r:MoraMedico]-(m);
+
+match (a:Atleta)
+match (me:Medico)
+match (t:Teste_Clinico)
+match (m:Marcacao)
+where a.nif_Atleta = m.nif_Atleta and me.nif_Medico = m.nif_Medico and t.idTeste_Clinico = m.idTeste_Clinico
+merge (a)-[ma:Marcacoes]-(t)
+on create set ma.data_Agendada = m.data_Agendada, ma.nif_Medico = me.nif_Medico;
+
+match (t:Teste_Clinico)
+match (e:Exame)
+match (m:Medico)
+where t.idTeste_Clinico = e.idTeste_Clinico and m.nif_Medico = e.nif_Medico
+merge (t)-[ex:ExameTeste]-(e);
+
+match (e:Exame)
+match (m:Medico)
+where m.nif_Medico = e.nif_Medico
+merge (m)-[r:ExameMedico]-(e);
+
+match (m:Medico)
+match (e:Especialidade)
+where m.idEspecialidade = e.idEspecialidade
+merge (e)-[r:EspecialidadeMedico]-(m);
+
+
+-------------------------------------------------------------------------------------------
+
+-- Queries
+
+-- Marcacoes do atleta nif = 3
+match (a:Atleta {nif_Atleta: 3})-[m:Marcacoes]-() 
+return a.nome as Nome, m.data_Agendada as Data;
+
+-- 1 Calcular o numero de atletas que moram na localidade X        AUXILIAR
+match (c:Codigo_Postal {localidade: "Lisboa"})-[:MoraAtleta]-(a:Atleta) 
+return count(a);
+
+--2  Calcular o numero de medicos que moram na localidade X    AUXILIAR
+match (c:Codigo_Postal)-[:MoraMedico]-(m:Medico) 
+where c.localidade = "Famalicão" 
+return count(m);
+
+-- Calcula a idade de uma pessoa                  AUXILIAR
+return duration.between(date("1999-10-15"), date()).years;
+
+-- Faz desconto para 10 euros caso o preco do exame seja superior a 25
+match ()-[r:ExameTeste]-(e:Exame)
+where e.preco > 25
+set e.preco = 10;
+
+-- Mudar o exame do atleta para "Aprovado"
+match (a:Atleta {nome: "Tsanko Arnaudov"})-[m:Marcacoes]-(t:Teste_Clinico)-[r:ExameTeste]-(e:Exame)
+set e.descricao = "Aprovado";
+
+-- Mostra todos atletas Aprovados
+match (a:Atleta)-[m:Marcacoes]-(t:Teste_Clinico)-[r:ExameTeste]-(e:Exame {descricao: "Aprovado"})
+return a.nome as Nome, t.data as Data, e.nome as Exame;
+
+--3 Lista de Atletas da Equipa Nike
+match (e:Equipa)-[ea:EquipaAtletas]-(a:Atleta) 
+where e.nome = "Nike" 
+return a.nome as Atleta;
+
+--4 Atletas com mais de 180 cm
+match (a:Atleta)-[:Marcacoes]-(t:Teste_Clinico) 
+where t.altura > 180 
+return distinct a.nome as Atleta;
+
+--5 Dado um médico, indica os atletas que tiveram consultas com ele
+match (a:Atleta)-[:Marcacoes {nif_Medico: 1111111111}]-(t:Teste_Clinico) 
+return distinct a.nome as Atleta;  
+
+--6 Seleciona todos atletas com marcacoes futuras
+match (t:Teste_Clinico)<-[:Marcacoes]-(a:Atleta)-[:Categorias]->(m:Modalidade) 
+where (t.altura is null) 
+return a.nome as Atleta, m.nome as Modalidade, 
+	   duration.between(date(a.data_nascimento), date()).years as Idade;
+
+--7 Apresenta uma os atletas que são da modalidade "Corrida de Pista"
+match (a:Atleta)-[c:Categorias]-(m:Modalidade {nome: "Corrida de Pista"}) 
+return a.nome as Atleta, c.descricao as Categoria; 
+
+--8 Contar o numero de atletas e medicos em cada Localidade
+match (m:Medico)-[:MoraMedico]-(c:Codigo_Postal) 
+return c.localidade as Localidade, count(m.nome) as Medicos;               -- TENTAR POR TUDO NA MESMA TABELA
+
+match (a:Atleta)-[:MoraAtleta]-(c:Codigo_Postal) 
+return c.localidade as Localidade, count(a.nome) as Atletas;
+
+--9 Apresenta o Medico com mais Marcacoes
+match ()-[m:Marcacoes]-(t:Teste_Clinico)
+match (me:Medico {nif_Medico: m.nif_Medico}) 
+return me.nome as Medico, count(t.idTeste_Clinico) as NumeroConsultas 
+order by NumeroConsultas desc 
+limit 1;
+
+
+--  Indica se um Atleta se encontra apto pelo resultado da ultima marcacao
+match (a:Atleta {nome: "Tsanko Arnaudov"})-[ma:Marcacoes]->(t:Teste_Clinico)-[et:ExameTeste]->(e:Exame)
+return a.nome as Nome, t.data as Data, e.descricao as Resultado
+order by t.data desc, e.descricao desc
+limit 1;                -- testar melhor
+
+
+-- Agenda uma marcação para atletas de uma Equipa
+match (e:Equipa {nome: "Sporting"})-[eq:EquipaAtletas]-(a:Atleta)
+merge (a)-[m:Marcacoes {data_Agendada: "2020-02-10", nif_Medico: 1111111113}]->(t:Teste_Clinico);
+
+
+-- Apresenta o total pago por teste clinico(soma dos exames) por atleta, ordenado pelo total pago
+match (a:Atleta)-[m:Marcacoes]-(t:Teste_Clinico)-[:ExameTeste]-(e:Exame)
+return a.nome, sum(e.preco) as TotalPago
+order by sum(e.preco);
+
+
+-- Atualiza os valores de um teste clinico
+match (t:Teste_Clinico {idTeste_Clinico: 4})
+set t.altura = 178, t.peso = 78, t.pressao_arterial = 10, t.freq_cardiaca = 80, t.indice_massa_corporal = 20, t.data = "2019-12-31T10:00:00";
+
+
+
