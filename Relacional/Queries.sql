@@ -235,7 +235,7 @@ create procedure isApto(in nome_Atleta varchar(100))
 begin
 	select e.descricao as "Status", t.data as "Data do Teste Clínico"
 	from Exame e, Teste_Clinico t, Atleta a, Marcacao m
-	where a.nome = "Tsanko Arnaudov" and m.nif_Atleta = a.nif_Atleta 
+	where a.nome = nome_Atleta and m.nif_Atleta = a.nif_Atleta 
 	and e.idTeste_Clinico = t.idTeste_Clinico and t.idTeste_Clinico = m.idTeste_Clinico
 	order by t.data desc, e.descricao desc 
     limit 1;
